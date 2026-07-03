@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STUDIO NAME — Menswear, London</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+  body{ overflow: hidden; }
+
+  .stage{
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .mark{
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(48px, 11vw, 128px);
+    line-height: 0.86;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  .mark span{ display:block; }
+  .mark .out{ -webkit-text-stroke: 1px var(--bone); color: transparent; }
+
+  .tagline{
+    margin-top: 18px;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--bone-dim);
+  }
+
+  nav.links{
+    display: flex;
+    gap: 14px;
+    margin-top: 46px;
+  }
+
+  .tab{
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 13px 26px;
+    border: 1px solid var(--line);
+    background: var(--panel);
+    transition: border-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+  }
+  .tab:hover{
+    border-color: var(--rust);
+    color: var(--bone);
+    transform: translateY(-1px);
+  }
+  .tab .n{
+    color: var(--rust);
+    margin-right: 8px;
+  }
+
+  .locate{
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--bone-dim);
+    opacity: 0.6;
+  }
+
+  /* subtle parallax on the mesh, driven by pointer position */
+  .textured{ transition: background-position 0.3s ease-out; }
+</style>
+</head>
+<body class="grain">
+
+  <div class="bracket-frame">
+    <span class="tl"></span><span class="tr"></span><span class="bl"></span><span class="br"></span>
+  </div>
+
+  <div class="stage textured" id="stage">
+    <h1 class="mark">
+      <span>STUDIO</span>
+      <span class="out">NAME</span>
+    </h1>
+    <p class="tagline">Menswear — London</p>
+
+    <nav class="links">
+      <a class="tab" href="portfolio.html"><span class="n">01</span>Portfolio</a>
+      <a class="tab" href="https://instagram.com/YOUR_HANDLE" target="_blank" rel="noopener"><span class="n">02</span>Instagram</a>
+    </nav>
+
+    <p class="locate">London — Est. 2026</p>
+  </div>
+
+<script>
+  // gentle parallax on the mesh texture, tracks pointer
+  const stage = document.getElementById('stage');
+  window.addEventListener('pointermove', (e) => {
+    const x = (e.clientX / window.innerWidth - 0.5) * 10;
+    const y = (e.clientY / window.innerHeight - 0.5) * 10;
+    stage.style.backgroundPosition = `${x}px ${y}px, ${13+x}px ${y}px, ${13-x}px ${y}px`;
+  });
+</script>
+</body>
+</html>
