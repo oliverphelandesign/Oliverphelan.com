@@ -12,6 +12,7 @@
 
   .stage{
     position: relative;
+    z-index: 2;
     height: 100vh;
     width: 100vw;
     display: flex;
@@ -19,6 +20,13 @@
     align-items: center;
     justify-content: center;
     text-align: center;
+  }
+
+  #pebbles{
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    display: block;
   }
 
   .mark{
@@ -64,10 +72,6 @@
     color: var(--bone);
     transform: translateY(-1px);
   }
-  .tab .n{
-    color: var(--rust);
-    margin-right: 8px;
-  }
 
   .locate{
     position: absolute;
@@ -82,8 +86,6 @@
     opacity: 0.6;
   }
 
-  /* subtle parallax on the mesh, driven by pointer position */
-  .textured{ transition: background-position 0.3s ease-out; }
 </style>
 </head>
 <body class="grain">
@@ -92,7 +94,9 @@
     <span class="tl"></span><span class="tr"></span><span class="bl"></span><span class="br"></span>
   </div>
 
-  <div class="stage textured" id="stage">
+  <canvas id="pebbles"></canvas>
+
+  <div class="stage" id="stage">
     <h1 class="mark">
       <span>STUDIO</span>
       <span class="out">NAME</span>
@@ -100,21 +104,13 @@
     <p class="tagline">Menswear — London</p>
 
     <nav class="links">
-      <a class="tab" href="portfolio.html"><span class="n">01</span>Portfolio</a>
-      <a class="tab" href="https://instagram.com/YOUR_HANDLE" target="_blank" rel="noopener"><span class="n">02</span>Instagram</a>
+      <a class="tab" href="portfolio.html">Portfolio</a>
+      <a class="tab" href="https://instagram.com/YOUR_HANDLE" target="_blank" rel="noopener">Instagram</a>
     </nav>
 
     <p class="locate">London — Est. 2026</p>
   </div>
 
-<script>
-  // gentle parallax on the mesh texture, tracks pointer
-  const stage = document.getElementById('stage');
-  window.addEventListener('pointermove', (e) => {
-    const x = (e.clientX / window.innerWidth - 0.5) * 10;
-    const y = (e.clientY / window.innerHeight - 0.5) * 10;
-    stage.style.backgroundPosition = `${x}px ${y}px, ${13+x}px ${y}px, ${13-x}px ${y}px`;
-  });
-</script>
+<script src="assets/js/pebbles.js"></script>
 </body>
 </html>
