@@ -7,13 +7,13 @@
   let pebbles = [];
   const mouse = { x: -9999, y: -9999 };
 
-  // warm/cool stone tones pulled from the palette
+  // warm/cool stone tones — kept lighter than the ink background on purpose
   const TONES = [
-    { fill: '#23211d', edge: '#0a0a09' }, // basalt
-    { fill: '#2c2822', edge: '#0a0a09' }, // slate brown
-    { fill: '#332c22', edge: '#0a0a09' }, // sun-warmed stone
-    { fill: '#2a231c', edge: '#0a0a09' }, // olive-grey
-    { fill: '#372420', edge: '#0a0a09' }, // rust-tinted stone
+    { fill: '#5a564a', edge: '#26241e' }, // basalt grey
+    { fill: '#6b6152', edge: '#2c2822' }, // slate brown
+    { fill: '#786c54', edge: '#332c22' }, // sun-warmed stone
+    { fill: '#635d48', edge: '#2a231c' }, // olive-grey
+    { fill: '#7a5644', edge: '#3a241c' }, // rust-tinted stone
   ];
 
   function resize(){
@@ -63,6 +63,10 @@
     ctx.translate(p.x, p.y);
     ctx.rotate(p.rot);
     ctx.scale(1, p.squash);
+
+    ctx.shadowColor = 'rgba(0,0,0,0.6)';
+    ctx.shadowBlur = p.r * 0.8;
+    ctx.shadowOffsetY = p.r * 0.25;
 
     const grad = ctx.createRadialGradient(-p.r * 0.3, -p.r * 0.3, p.r * 0.1, 0, 0, p.r);
     grad.addColorStop(0, p.tone.fill);
