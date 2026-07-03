@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>STUDIO NAME — Menswear, London</title>
+<title>Oliver Phelan Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
 <style>
   body{ overflow: hidden; }
@@ -31,10 +31,10 @@
 
   .mark{
     font-family: var(--display);
-    font-weight: 800;
-    font-size: clamp(48px, 11vw, 128px);
-    line-height: 0.86;
-    letter-spacing: -0.01em;
+    font-weight: 700;
+    font-size: clamp(28px, 5.4vw, 58px);
+    line-height: 1.05;
+    letter-spacing: -0.005em;
     text-transform: uppercase;
     margin: 0;
   }
@@ -73,19 +73,6 @@
     transform: translateY(-1px);
   }
 
-  .locate{
-    position: absolute;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--bone-dim);
-    opacity: 0.6;
-  }
-
 </style>
 </head>
 <body class="grain">
@@ -97,18 +84,18 @@
   <canvas id="pebbles"></canvas>
 
   <div class="stage" id="stage">
-    <h1 class="mark">
-      <span>STUDIO</span>
-      <span class="out">NAME</span>
-    </h1>
-    <p class="tagline">Menswear — London</p>
+    <div id="content">
+      <h1 class="mark">
+        <span>Oliver Phelan</span>
+        <span class="out">Portfolio</span>
+      </h1>
+      <p class="tagline">Menswear — London</p>
 
-    <nav class="links">
-      <a class="tab" href="portfolio.html">Portfolio</a>
-      <a class="tab" href="https://instagram.com/YOUR_HANDLE" target="_blank" rel="noopener">Instagram</a>
-    </nav>
-
-    <p class="locate">London — Est. 2026</p>
+      <nav class="links">
+        <a class="tab" href="portfolio.html">Portfolio</a>
+        <a class="tab" href="https://instagram.com/YOUR_HANDLE" target="_blank" rel="noopener">Instagram</a>
+      </nav>
+    </div>
   </div>
 
 <script src="assets/js/pebbles.js"></script>

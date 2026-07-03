@@ -20,6 +20,16 @@ Two pages: a landing page (`index.html`) and a horizontal-scroll portfolio (`por
 - `index.html`: swap `STUDIO NAME` for your actual name/label, and swap `YOUR_HANDLE` in the Instagram link for your real handle.
 - `portfolio.html`: swap the `<title>` if you want.
 
+## Adding the Squid Boy Regular font
+
+Squid Boy Regular is a paid font, so it isn't linked from a free CDN like the other fonts were. Once you've bought and downloaded it:
+
+1. Drop the font file into `assets/fonts/`.
+2. Name it to match what `style.css` expects — `SquidBoyRegular.woff2` (preferred), or `SquidBoyRegular.otf` / `SquidBoyRegular.ttf` if that's the format you have.
+3. Commit and push. The site will pick it up automatically.
+
+Until you add it, the site falls back to Baloo 2 (free, rounded, similar spirit) so nothing looks broken in the meantime.
+
 ## Adding work to the portfolio
 
 There's no upload button — GitHub Pages can't run a server, so "uploading" means adding files to the repo. It's still simple:

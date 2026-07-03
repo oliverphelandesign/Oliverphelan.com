@@ -1,10 +1,25 @@
 /* ===========================================================
    TOKENS
    Palette pulls from natural dye tones (rust/madder, dye-vat
-   olive) against undyed canvas and near-black. Grain + hex mesh
-   texture reference laser-cut rig-mesh panels. Corner brackets
+   olive) against undyed canvas and near-black. Corner brackets
    reference flight-case hardware.
+
+   FONT: Squid Boy Regular is a paid font, so it can't be linked
+   from a free CDN. Buy it, then drop the file into
+   assets/fonts/ as SquidBoyRegular.woff2 (or .otf/.ttf and
+   adjust the @font-face src below) and it takes over
+   automatically — Baloo 2 is just the placeholder until then.
    =========================================================== */
+@font-face{
+  font-family: 'Squid Boy Regular';
+  src: url('../fonts/SquidBoyRegular.woff2') format('woff2'),
+       url('../fonts/SquidBoyRegular.otf') format('opentype'),
+       url('../fonts/SquidBoyRegular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root{
   --ink: #0a0a09;
   --ink-2: #141311;
@@ -16,9 +31,9 @@
   --line: rgba(233,227,212,0.14);
   --mesh: rgba(233,227,212,0.05);
 
-  --display: "Big Shoulders Display", "Arial Narrow", sans-serif;
-  --mono: "IBM Plex Mono", "Courier New", monospace;
-  --body: "IBM Plex Sans", Arial, sans-serif;
+  --display: 'Squid Boy Regular', 'Baloo 2', sans-serif;
+  --mono: 'Squid Boy Regular', 'Baloo 2', sans-serif;
+  --body: 'Squid Boy Regular', 'Baloo 2', sans-serif;
 }
 
 *{ box-sizing: border-box; }
