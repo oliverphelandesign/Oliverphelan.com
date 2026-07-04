@@ -8,7 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
 <style>
-  html, body{ height: 100%; overflow: hidden; }
+  html, body{ height: 100%; margin: 0; overflow: hidden; background: #EDEADE; color: #111111; }
 
   header.bar{
     position: fixed;
@@ -23,8 +23,8 @@
     letter-spacing: 0.16em;
     text-transform: uppercase;
   }
-  header.bar a{ color: var(--bone-dim); }
-  header.bar a:hover{ color: var(--rust); }
+  header.bar a{ color: #111111; }
+  header.bar a:hover{ color: #000000; }
   header.bar .count{ color: var(--bone-dim); }
 
   #rail{
@@ -36,25 +36,33 @@
     overflow-y: hidden;
     scroll-behavior: auto;
     scrollbar-width: none;
+    gap: 0;
+    -webkit-overflow-scrolling: touch;
+    touch-action: none;
+    background: #EDEADE;
   }
   #rail::-webkit-scrollbar{ display: none; }
 
   .slide{
-    flex: 0 0 auto;
+    flex: 0 0 100vw;
     height: 100vh;
     width: 100vw;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    border-right: 1px solid var(--line);
+    border-top: 1px solid rgba(233,227,212,0.12);
+    border-bottom: 1px solid rgba(233,227,212,0.12);
+    background: #EDEADE;
   }
 
   .slide img, .slide video, .slide canvas{
-    max-height: 84vh;
-    max-width: 84vw;
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    max-height: 100vh;
     object-fit: contain;
-    box-shadow: 0 30px 80px rgba(0,0,0,0.55);
+    box-shadow: none;
   }
 
   .tag{

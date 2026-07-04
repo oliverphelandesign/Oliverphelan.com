@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lookbook — Olivier Phelan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: light;
+    font-family: 'Squid Boy Regular', 'Baloo 2', sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { min-height: 100%; background: #EDEADE; color: #111111; }
+  body { padding: 20px; }
+  .page { position: relative; max-width: 1200px; margin: 0 auto; padding: 60px 32px; }
+  .top-nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 32px; position: relative; }
+  .top-nav a { color: #111111; text-decoration: none; font-weight: 700; font-size: 24px; line-height: 1; }
+  .top-nav a:hover { opacity: 0.8; }
+  .dropdown { position: relative; }
+  .dropdown button { background: transparent; border: none; width: 42px; height: 42px; padding: 0; cursor: pointer; position: relative; }
+  .dropdown button::before { content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 4px;
+    height: 4px;
+    background: #111;
+    border-radius: 50%;
+    box-shadow: -10px 0 0 #111, 10px 0 0 #111;
+    transform: translate(-50%, -50%);
+  }
+  .dropdown-list { position: absolute; top: calc(100% + 10px); left: 0; width: 220px; background: rgba(255,255,255,0.96); border: 1px solid rgba(17,17,17,0.12); box-shadow: 0 24px 48px rgba(17,17,17,0.08); display: none; z-index: 10; }
+  .dropdown-list.active { display: block; }
+  .dropdown-list a { display: block; width: 100%; text-align: left; border: none; background: transparent; padding: 14px 18px; font-family: inherit; font-size: 14px; cursor: pointer; color: inherit; text-decoration: none; }
+  .dropdown-list a:hover { background: rgba(17,17,17,0.06); }
+  .carousel-wrap { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; padding: 18px 0; align-items: start; }
+  .carousel-item { width: 100%; background: transparent; display: flex; justify-content: center; }
+  .carousel-item img { width: 100%; max-width: 380px; height: auto; display: block; border: none; object-fit: contain; }
+  .status { display: block; margin-top: 12px; font-size: 14px; color: #6f6a60; }
+  /* Flower hover visuals for clickable items */
+  a, button, .carousel-item, .dropdown-list button { position: relative; z-index: 1; }
+  a::before, button::before, .carousel-item::before, .dropdown-list button::before {
+    content: '';
+    position: absolute;
+    left: 50%; top: 50%;
+    transform: translate(-50%, -50%) translate(var(--flower-dx,0px), var(--flower-dy,0px)) rotate(var(--flower-rot,0deg)) scale(var(--flower-scale,1));
+    width: var(--flower-size,120px);
+    height: var(--flower-size,120px);
+    background-image: url('assets/flower.png');
+    background-size: contain; background-repeat: no-repeat;
+    opacity: 0; pointer-events: none; transition: opacity 260ms ease, transform 260ms ease; z-index: 0;
+  }
+  .flower-hover::before{ opacity: 0.22; }
+</style>
+</head>
+<body>
+  <div class="page">
+    <div class="top-nav">
+      <a href="index.html" aria-label="Back to home">←</a>
+      <div class="dropdown">
+        <button id="dropdownToggle" aria-label="Open lookbook sections"></button>
+        <div class="dropdown-list" id="dropdownList">
+          <a class="section-link" href="#section-63" data-slug="section-63" aria-label="SECTION 63">SECTION 63</a>
+          <a class="section-link" href="#boro" data-slug="boro" aria-label="BORO">BORO</a>
+          <a class="section-link" href="#seduction" data-slug="seduction" aria-label="SEDUCTION">SEDUCTION</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="carousel-wrap" id="carouselWrap"></div>
+    <div class="status" id="statusText"></div>
+  </div>
+
+<script>
+  const dropdownToggle = document.getElementById('dropdownToggle');
+  const dropdownList = document.getElementById('dropdownList');
+  const carouselWrap = document.getElementById('carouselWrap');
+  const statusText = document.getElementById('statusText');
+
+  const lookbooks = {
+    'section-63': {
+      label: 'SECTION 63',
+      images: [
+        'assets/lookbook/section-63/ki/ki1.JPG',
+        'assets/lookbook/section-63/ki/ki2.JPG',
+        'assets/lookbook/section-63/ki/ki3.JPG',
+        'assets/lookbook/section-63/ki/ki4.JPG',
+        'assets/lookbook/section-63/ki/ki5.JPG',
+        'assets/lookbook/section-63/ki/ki6.JPG',
+        'assets/lookbook/section-63/ki/ki7.JPG',
+        'assets/lookbook/section-63/ki/ki8.JPG',
+        'assets/lookbook/section-63/ki/ki9.JPG',
+        'assets/lookbook/section-63/ki/ki10.JPG',
+        'assets/lookbook/section-63/ki/ki11.JPG',
+        'assets/lookbook/section-63/ki/ki12.JPG',
+        'assets/lookbook/section-63/ki/ki13.JPG',
+        'assets/lookbook/section-63/ki/ki14.JPG',
+        'assets/lookbook/section-63/ki/ki15.JPG',
+        'assets/lookbook/section-63/ki/ki16.JPG',
+        'assets/lookbook/section-63/ki/ki17.JPG',
+        'assets/lookbook/section-63/ki/ki18.JPG',
+        'assets/lookbook/section-63/ki/ki19.JPG',
+        'assets/lookbook/section-63/ki/ki20.JPG',
+        'assets/lookbook/section-63/ki/ki21.JPG',
+        'assets/lookbook/section-63/ki/ki22.JPG',
+        'assets/lookbook/section-63/ki/ki23.JPG',
+        'assets/lookbook/section-63/ki/ki24.JPG',
+        'assets/lookbook/section-63/ki/ki25.JPG',
+        'assets/lookbook/section-63/ki/ki26.JPG',
+        'assets/lookbook/section-63/ki/ki27.JPG',
+        'assets/lookbook/section-63/ki/ki28.JPG',
+        'assets/lookbook/section-63/ki/ki29.JPG',
+        'assets/lookbook/section-63/ki/ki30.JPG',
+        'assets/lookbook/section-63/ki/ki31.JPG'
+      ]
+    },
+    'boro': {
+      label: 'BORO',
+      images: Array.from({length: 30}, (_, index) => `assets/lookbook/boro/elias/boro${index + 1}.JPG`)
+    },
+    'seduction': {
+      label: 'SEDUCTION',
+      images: [
+        'assets/lookbook/seduction/aaron/aaron1.jpg',
+        'assets/lookbook/seduction/aaron/aaron2.jpg',
+        'assets/lookbook/seduction/aaron/aaron3.jpg',
+        'assets/lookbook/seduction/aaron/aaron4.JPG',
+        'assets/lookbook/seduction/aaron/aaron5.jpg',
+        'assets/lookbook/seduction/aaron/aaron6.png'
+      ]
+    }
+  };
+
+  function renderLookbook(slug) {
+    const book = lookbooks[slug];
+    if (!book) {
+      const fallback = 'section-63';
+      window.location.hash = `#${fallback}`;
+      return renderLookbook(fallback);
+    }
+    dropdownToggle.textContent = book.label;
+    dropdownToggle.setAttribute('aria-label', book.label);
+    dropdownToggle.setAttribute('title', book.label);
+    statusText.textContent = `${book.label} — scroll vertically to browse`;
+    carouselWrap.innerHTML = book.images.map(src => `
+      <div class="carousel-item"><img src="${src}" alt="${book.label} image"></div>`).join('');
+  }
+
+  dropdownToggle.addEventListener('click', () => {
+    dropdownList.classList.toggle('active');
+  });
+
+  dropdownList.querySelectorAll('a[data-slug]').forEach(link => {
+    link.addEventListener('click', event => {
+      event.preventDefault();
+      const slug = link.dataset.slug;
+      window.location.hash = `#${slug}`;
+      renderLookbook(slug);
+      dropdownList.classList.remove('active');
+    });
+  });
+
+  document.addEventListener('click', event => {
+    if (!dropdownToggle.contains(event.target) && !dropdownList.contains(event.target)) {
+      dropdownList.classList.remove('active');
+    }
+  });
+
+  const initialSlug = (window.location.hash || '#section-63').replace('#', '');
+  renderLookbook(initialSlug);
+
+  window.addEventListener('hashchange', () => {
+    const slug = (window.location.hash || '#section-63').replace('#', '');
+    renderLookbook(slug);
+  });
+</script>
+<script>
+  // Global flower cursor: cycles images from assets/flowers and crossfades between them
+  (function(){
+    const images = [];
+    for(let i=3;i<=27;i++){ const n=String(i).padStart(2,'0'); images.push(`assets/flowers/flowers_${n}.png`); }
+    const container = document.createElement('div'); container.id='flower-cursor'; container.setAttribute('aria-hidden','true'); container.style.position='fixed'; container.style.left='50%'; container.style.top='50%'; container.style.width='120px'; container.style.height='120px'; container.style.pointerEvents='none'; container.style.transform='translate(-50%,-50%)'; container.style.transition='opacity 260ms ease, transform 120ms linear'; container.style.opacity='0'; container.style.zIndex='0'; container.innerHTML='<img class="flower-image"/>'; document.body.appendChild(container);
+    const flowerImg = container.querySelector('.flower-image'); flowerImg.style.position='absolute'; flowerImg.style.left='0'; flowerImg.style.top='0'; flowerImg.style.width='100%'; flowerImg.style.height='100%'; flowerImg.style.objectFit='contain'; flowerImg.style.pointerEvents='none'; flowerImg.style.transition='opacity 450ms ease'; flowerImg.style.opacity='0';
+    function preload(src){ const i=new Image(); i.src=src; }
+    let order = images.slice().sort(()=>Math.random()-0.5); let idx = Math.floor(Math.random()*order.length); flowerImg.src = order[idx]; flowerImg.style.opacity='1'; preload(order[(idx+1)%order.length]); let cycleTimer=0;
+    function crossfadeTo(src){
+      flowerImg.style.opacity='0';
+      const onFade = () => {
+        flowerImg.removeEventListener('transitionend', onFade);
+        flowerImg.src = src;
+        requestAnimationFrame(()=>{ flowerImg.style.opacity='1'; });
+      };
+      flowerImg.addEventListener('transitionend', onFade, { once: true });
+    }
+    function startCycle(){ if(cycleTimer) clearInterval(cycleTimer); cycleTimer=setInterval(()=>{ idx=(idx+1)%order.length; crossfadeTo(order[idx]); },2600); }
+    function stopCycle(){ if(cycleTimer) clearInterval(cycleTimer); cycleTimer=0; }
+    let animRaf=0; let animSeed=Math.random()*1000; let animStart=0;
+    function startAnimFor(target){ if(!target) return; if(!target.dataset.flowerSeed) target.dataset.flowerSeed=String(Math.random()*1000); animSeed=+target.dataset.flowerSeed; const size=Math.min(220, Math.max(72, Math.round(target.offsetWidth*0.9))); container.style.width=size+'px'; container.style.height=size+'px'; container.style.setProperty('--flower-size', size+'px'); animStart=performance.now(); function frame(t){ if(container._lockedTo!==target) return; const dt=(t-animStart)/1000; const ax=Math.sin(dt*1.2+animSeed)*8 + (animSeed%3 - 1); const ay=Math.cos(dt*1.1+animSeed*1.5)*5; const rot=Math.sin(dt*0.8+animSeed*0.7)*4; container.style.transform = `translate(-50%,-50%) translate(${ax.toFixed(2)}px, ${ay.toFixed(2)}px) rotate(${rot.toFixed(2)}deg)`; animRaf=requestAnimationFrame(frame); } cancelAnimationFrame(animRaf); animRaf=requestAnimationFrame(frame); }
+    function stopAnim(){ cancelAnimationFrame(animRaf); animRaf=0; container.style.transform='translate(-50%,-50%)'; }
+    document.addEventListener('mousemove', e=>{ if(container._lockedTo){ const r=container._lockedTo.getBoundingClientRect(); const x=r.left + r.width/2; const y=r.top + r.height/2; container.style.left = x + 'px'; container.style.top = y + 'px'; } else { container.style.left = e.clientX + 'px'; container.style.top = e.clientY + 'px'; } });
+    let hovered=null;
+    function onHoverStart(target){ if(!target) return; if(hovered===target) return; hovered=target; container._lockedTo=target; container.style.opacity='0.22'; idx=Math.floor(Math.random()*order.length); flowerImg.src = order[idx]; flowerImg.style.opacity='1'; preload(order[(idx+1)%order.length]); startCycle(); startAnimFor(target); target.classList.add('flower-hover'); }
+    function onHoverEnd(target){ if(hovered!==target) return; target.classList.remove('flower-hover'); hovered=null; container._lockedTo=null; container.style.opacity='0'; stopCycle(); stopAnim(); }
+    document.addEventListener('mouseover', e=>{ const t=e.target.closest('a,button,[role="button"],.carousel-item,.dropdown-list button'); if(!t) return; onHoverStart(t); });
+    document.addEventListener('mouseout', e=>{ if(!hovered) return; const to=e.relatedTarget; if(to && hovered.contains(to)) return; onHoverEnd(hovered); });
+  })();
+</script>
+</body>
+</html>

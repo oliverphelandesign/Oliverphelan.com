@@ -114,10 +114,28 @@
   }
 
   // ---- force every scroll gesture to move the rail horizontally ----
+  let wheelScrollTarget = rail.scrollLeft;
+  let wheelTicking = false;
+
+  const updateWheelScroll = () => {
+    const diff = wheelScrollTarget - rail.scrollLeft;
+    if (Math.abs(diff) > 0.5) {
+      rail.scrollLeft += diff * 0.2;
+      requestAnimationFrame(updateWheelScroll);
+    } else {
+      rail.scrollLeft = wheelScrollTarget;
+      wheelTicking = false;
+    }
+  };
+
   rail.addEventListener('wheel', (e) => {
     e.preventDefault();
     const delta = Math.abs(e.deltaY) > Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
-    rail.scrollLeft += delta;
+    wheelScrollTarget += delta;
+    if (!wheelTicking) {
+      wheelTicking = true;
+      requestAnimationFrame(updateWheelScroll);
+    }
   }, { passive: false });
 
   // touch: vertical swipes pan horizontally too
@@ -131,8 +149,8 @@
   rail.addEventListener('touchmove', (e) => {
     const dx = touchStartX - e.touches[0].clientX;
     const dy = touchStartY - e.touches[0].clientY;
-    // combine both axes so a vertical swipe still drives the rail
-    rail.scrollLeft = touchScrollStart + dx + dy;
+    const offset = Math.abs(dy) > Math.abs(dx) ? dy : dx;
+    rail.scrollLeft = touchScrollStart + offset;
     e.preventDefault();
   }, { passive: false });
 

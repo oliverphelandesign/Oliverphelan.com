@@ -3,102 +3,537 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Oliver Phelan Portfolio</title>
+<title>Olivier Phelan — Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css">
 <style>
-  body{ overflow: hidden; }
-
-  .stage{
-    position: relative;
-    z-index: 2;
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+  :root {
+    color-scheme: light;
+    font-family: 'Squid Boy Regular', 'Baloo 2', sans-serif;
   }
 
-  #pebbles{
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html, body {
+    min-height: 100%;
+    background: #EDEADE;
+    color: #111111;
+    overflow-x: hidden;
+  }
+
+  body {
+    --mouse-x: 50%;
+    --mouse-y: 50%;
+  }
+
+  .page {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 0.45fr 1.1fr;
+    align-items: center;
+    justify-items: start;
+    padding: 80px 80px 80px;
+    gap: 40px;
+    position: relative;
+    z-index: 1;
+  }
+
+  body::after {
+    content: '';
     position: fixed;
     inset: 0;
-    z-index: 1;
+    pointer-events: none;
+    background-image:
+      radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(255,255,255,0.40), transparent 12%),
+      url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23n)"/></svg>');
+    mix-blend-mode: screen;
+    opacity: 0.7;
+    z-index: -2;
+    transition: opacity 0.15s ease;
+  }
+
+  .hero-flyer {
+    position: fixed;
+    right: clamp(32px, 10vw, 96px);
+    top: 32%;
+    transform: translate(0, -50%);
+    width: min(520px, 40vw);
+    max-width: 480px;
+    z-index: 2;
     display: block;
+    cursor: pointer;
+    animation: fly-around 5.8s ease-in-out infinite;
+    transition: transform 240ms ease;
   }
 
-  .mark{
-    font-family: var(--display);
-    font-weight: 700;
-    font-size: clamp(28px, 5.4vw, 58px);
-    line-height: 1.05;
-    letter-spacing: -0.005em;
-    text-transform: uppercase;
-    margin: 0;
+  .hero-flyer:hover {
+    transform: translate(0, -50%) scale(1.02);
   }
 
-  .mark span{ display:block; }
-  .mark .out{ -webkit-text-stroke: 1px var(--bone); color: transparent; }
-
-  .tagline{
-    margin-top: 18px;
-    font-family: var(--mono);
-    font-size: 12px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--bone-dim);
+  .hero-flyer img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    border-radius: 0;
+    box-shadow: none;
+    background: transparent;
   }
 
-  nav.links{
+  @keyframes fly-around {
+    0%, 100% { transform: translate(0, -50%) rotate(-1deg) scale(1); }
+    18% { transform: translate(8px, -54%) rotate(2deg) scale(1.01); }
+    38% { transform: translate(-10px, -48%) rotate(-2deg) scale(0.99); }
+    62% { transform: translate(7px, -50%) rotate(1deg) scale(1.02); }
+    82% { transform: translate(-5px, -52%) rotate(-1deg) scale(0.98); }
+  }
+
+  .landing-logo-link {
+    position: fixed;
+    top: 28px;
+    left: 28px;
+    width: min(300px, 34vw);
+    max-width: 260px;
+    z-index: 2;
+    display: block;
+    text-decoration: none;
+  }
+
+  .landing-logo {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    pointer-events: none;
+  }
+
+  .side-nav {
     display: flex;
-    gap: 14px;
-    margin-top: 46px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 60px;
+    position: absolute;
+    top: 50%;
+    left: 40px;
+    transform: translateY(-50%);
+    min-height: auto;
   }
 
-  .tab{
-    font-family: var(--mono);
-    font-size: 12px;
-    letter-spacing: 0.14em;
+  .side-nav::before {
+    content: '';
+    position: absolute;
+    right: -50px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 320px;
+    background: rgba(17,17,17,0.08);
+  }
+
+  .side-link {
+    font-size: 16px;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    padding: 13px 26px;
-    border: 1px solid var(--line);
-    background: var(--panel);
-    transition: border-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
-  }
-  .tab:hover{
-    border-color: var(--rust);
-    color: var(--bone);
-    transform: translateY(-1px);
+    font-weight: 700;
+    color: #111111;
+    text-decoration: none;
+    transition: transform 0.2s ease, color 0.2s ease;
   }
 
+  .lookbook-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-left: 4px;
+  }
+
+  .lookbook-title {
+    font-size: 16px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #111111;
+    text-align: left;
+    cursor: default;
+  }
+
+  .lookbook-list {
+    max-height: 0;
+    opacity: 0;
+    visibility: hidden;
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-left: 14px;
+    transition: max-height 320ms ease, opacity 320ms ease, visibility 320ms ease;
+  }
+
+  .lookbook-group:hover .lookbook-list {
+    max-height: 260px;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .lookbook-item {
+    display: block;
+    font-size: 16px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #111111;
+    text-decoration: none;
+    opacity: 0;
+    transform: translateY(-6px);
+    transition: transform 220ms ease, opacity 220ms ease;
+    white-space: nowrap;
+  }
+
+  .lookbook-item:hover {
+    opacity: 1;
+  }
+
+  .lookbook-group:hover .lookbook-item:nth-of-type(1) {
+    opacity: 0.9;
+    transform: translateY(0) translateX(4px);
+    transition-delay: 80ms;
+  }
+
+  .lookbook-group:hover .lookbook-item:nth-of-type(2) {
+    opacity: 0.9;
+    transform: translateY(0) translateX(8px);
+    transition-delay: 140ms;
+  }
+
+  .lookbook-group:hover .lookbook-item:nth-of-type(3) {
+    opacity: 0.9;
+    transform: translateY(0) translateX(12px);
+    transition-delay: 200ms;
+  }
+
+  .lookbook-item:nth-of-type(2) {
+    transform: translateX(8px);
+  }
+
+  .lookbook-item:nth-of-type(3) {
+    transform: translateX(12px);
+  }
+
+  .side-nav a.side-link,
+  .lookbook-item {
+    font-size: 19.2px;
+    padding: 8px 0;
+    display: inline-block;
+  }
+
+  .side-link:hover {
+    color: #000000;
+    transform: translateX(8px);
+  }
+
+  .section {
+    padding: 120px 80px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .hero-gif-section {
+    padding: 0 80px 140px;
+    max-width: 980px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-gif-inner {
+    display: grid;
+    place-items: center;
+    gap: 28px;
+    background: transparent;
+  }
+
+  .hero-gif-inner img {
+    width: min(100%, 630px);
+    max-width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    border-radius: 22px;
+    box-shadow: none;
+    background: transparent;
+  }
+
+  .hero-gif-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background: linear-gradient(180deg, #EDEADE 0%, rgba(237,234,222,0) 100%);
+    pointer-events: none;
+  }
+
+  .section + .section {
+    padding-top: 80px;
+  }
+
+  .section h2 {
+    font-size: 32px;
+    margin-bottom: 16px;
+  }
+
+  .section p {
+    color: #6f6a60;
+    line-height: 1.8;
+    max-width: 42rem;
+  }
+
+  @media (max-width: 1080px) {
+    .page {
+      grid-template-columns: 1fr;
+      padding: 80px 40px 100px;
+    }
+
+    .side-nav {
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .side-nav::before {
+      display: none;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .page {
+      padding: 80px 24px 80px;
+      gap: 24px;
+    }
+
+    .hero-flyer {
+      position: absolute;
+      right: 50%;
+      top: 20%;
+      transform: translate(50%, -50%);
+      width: min(440px, 72vw);
+      max-width: 440px;
+    }
+
+    .side-nav {
+      flex-direction: column;
+      gap: 18px;
+    }
+  }
+  /* Flower hover visual for interactive elements */
+  a, button, .side-link, .lookbook-item, .contact-link, .carousel-item {
+    position: relative;
+    z-index: 1;
+    overflow: visible;
+  }
+
+  a::before, button::before, .side-link::before, .lookbook-item::before, .contact-link::before, .carousel-item::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) translate(var(--flower-dx, 0px), var(--flower-dy, 0px)) rotate(var(--flower-rot, 0deg)) scale(var(--flower-scale, 1));
+    width: var(--flower-size, 120px);
+    height: var(--flower-size, 120px);
+    background-image: url('assets/flower.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 260ms ease, transform 260ms ease;
+    z-index: 0;
+  }
+
+  .flower-hover::before {
+    opacity: 0.22;
+  }
 </style>
 </head>
-<body class="grain">
-
-  <div class="bracket-frame">
-    <span class="tl"></span><span class="tr"></span><span class="bl"></span><span class="br"></span>
-  </div>
-
-  <canvas id="pebbles"></canvas>
-
-  <div class="stage" id="stage">
-    <div id="content">
-      <h1 class="mark">
-        <span>Oliver Phelan</span>
-        <span class="out">Portfolio</span>
-      </h1>
-      <p class="tagline">Menswear — London</p>
-
-=======
-    <nav class="links">
-      <a class="tab" href="portfolio.html">Portfolio</a>
-      <a class="tab" href="https://instagram.com/1027.004.04204" target="_blank" rel="noopener">Instagram</a>
+<body>
+  <a class="landing-logo-link" href="contact.html" aria-label="Contact">
+    <img class="landing-logo" src="assets/top-left.png" alt="Top left logo" />
+  </a>
+  <div class="page">
+    <nav class="side-nav">
+      <a class="side-link" href="portfolio.html">Portfolio</a>
+      <div class="lookbook-group">
+        <span class="lookbook-title">Lookbook</span>
+        <div class="lookbook-list">
+          <a class="lookbook-item" href="lookbook.html#section-63">SECTION 63</a>
+          <a class="lookbook-item" href="lookbook.html#boro">BORO</a>
+          <a class="lookbook-item" href="lookbook.html#seduction">SEDUCTION</a>
+        </div>
+      </div>
+      <a class="side-link" href="contact.html">Contact</a>
     </nav>
-
   </div>
 
-<script src="assets/js/pebbles.js"></script>
+  <a class="hero-flyer" href="https://www.instagram.com/1027.004.04204/?hl=en" target="_blank" rel="noreferrer" aria-label="Visit Instagram">
+    <img src="assets/hero-front.png" alt="Front page hero image for Instagram" />
+  </a>
+
+  <div class="hero-gif-section">
+    <div class="hero-gif-inner">
+      <img src="assets/hero.gif" alt="Scroll reveal hero GIF" />
+    </div>
+  </div>
+
+<script>
+  const body = document.body;
+
+  document.addEventListener('mousemove', event => {
+    const x = (event.clientX / window.innerWidth) * 100;
+    const y = (event.clientY / window.innerHeight) * 100;
+    body.style.setProperty('--mouse-x', `${x}%`);
+    body.style.setProperty('--mouse-y', `${y}%`);
+  });
+
+  // Global flower cursor: cycles images from assets/flowers and crossfades between them
+  (function(){
+    // build image list: flowers_03.png .. flowers_27.png
+    const images = [];
+    for(let i=3;i<=27;i++){
+      const n = String(i).padStart(2,'0');
+      images.push(`assets/flowers/flowers_${n}.png`);
+    }
+
+    // create container
+    const container = document.createElement('div');
+    container.id = 'flower-cursor';
+    container.setAttribute('aria-hidden','true');
+    container.style.position = 'fixed';
+    container.style.left = '50%';
+    container.style.top = '50%';
+    container.style.width = '120px';
+    container.style.height = '120px';
+    container.style.pointerEvents = 'none';
+    container.style.transform = 'translate(-50%,-50%)';
+    container.style.transition = 'opacity 260ms ease, transform 120ms linear';
+    container.style.opacity = '0';
+    container.style.zIndex = '0';
+    container.innerHTML = '<img class="flower-image"/>';
+    document.body.appendChild(container);
+
+    const flowerImg = container.querySelector('.flower-image');
+    flowerImg.style.position = 'absolute';
+    flowerImg.style.left = '0';
+    flowerImg.style.top = '0';
+    flowerImg.style.width = '100%';
+    flowerImg.style.height = '100%';
+    flowerImg.style.objectFit = 'contain';
+    flowerImg.style.pointerEvents = 'none';
+    flowerImg.style.transition = 'opacity 380ms ease';
+    flowerImg.style.opacity = '0';
+
+    function preload(src){ const i = new Image(); i.src = src; }
+
+    let order = images.slice().sort(() => Math.random() - 0.5);
+    let idx = Math.floor(Math.random() * order.length);
+    flowerImg.src = order[idx];
+    flowerImg.style.opacity = '1';
+    preload(order[(idx + 1) % order.length]);
+
+    let cycleTimer = 0;
+    function crossfadeTo(src){
+      flowerImg.style.opacity = '0';
+      setTimeout(() => {
+        flowerImg.src = src;
+        flowerImg.style.opacity = '1';
+      }, 260);
+    }
+    function startCycle(){ if(cycleTimer) clearInterval(cycleTimer); cycleTimer = setInterval(() => { idx = (idx + 1) % order.length; crossfadeTo(order[idx]); }, 2600); }
+    function stopCycle(){ if(cycleTimer) clearInterval(cycleTimer); cycleTimer = 0; }
+
+    // motion animation for subtle wind-like offsets
+    let animRaf = 0;
+    let animSeed = Math.random()*1000;
+    let animStart = 0;
+    function startAnimFor(target){
+      if(!target) return;
+      if(!target.dataset.flowerSeed) target.dataset.flowerSeed = String(Math.random()*1000);
+      animSeed = +target.dataset.flowerSeed;
+      const size = Math.min(220, Math.max(72, Math.round(target.offsetWidth * 0.9)));
+      container.style.width = size + 'px';
+      container.style.height = size + 'px';
+      container.style.setProperty('--flower-size', size + 'px');
+      animStart = performance.now();
+      function frame(t){
+        if(container._lockedTo !== target) return;
+        const dt = (t - animStart)/1000;
+        const ax = Math.sin(dt*1.2 + animSeed) * 8 + (animSeed%3 - 1);
+        const ay = Math.cos(dt*1.1 + animSeed*1.5) * 5;
+        const rot = Math.sin(dt*0.8 + animSeed*0.7) * 4;
+        container.style.transform = `translate(-50%,-50%) translate(${ax.toFixed(2)}px, ${ay.toFixed(2)}px) rotate(${rot.toFixed(2)}deg)`;
+        animRaf = requestAnimationFrame(frame);
+      }
+      cancelAnimationFrame(animRaf);
+      animRaf = requestAnimationFrame(frame);
+    }
+    function stopAnim(){ cancelAnimationFrame(animRaf); animRaf = 0; container.style.transform = 'translate(-50%,-50%)'; }
+
+    // update position: lock to target center while hovering, otherwise follow cursor
+    document.addEventListener('mousemove', e => {
+      if(container._lockedTo){
+        const r = container._lockedTo.getBoundingClientRect();
+        const x = r.left + r.width/2;
+        const y = r.top + r.height/2;
+        container.style.left = x + 'px';
+        container.style.top = y + 'px';
+      } else {
+        container.style.left = e.clientX + 'px';
+        container.style.top = e.clientY + 'px';
+      }
+    });
+
+    // hover handlers
+    let hovered = null;
+    function onHoverStart(target){
+      if(!target) return;
+      if(hovered === target) return;
+      hovered = target;
+      container._lockedTo = target;
+      container.style.opacity = '0.22';
+      idx = Math.floor(Math.random()*order.length);
+      flowerImg.src = order[idx];
+      flowerImg.style.opacity = '1';
+      preload(order[(idx+1)%order.length]);
+      startCycle();
+      startAnimFor(target);
+      target.classList.add('flower-hover');
+    }
+    function onHoverEnd(target){
+      if(hovered !== target) return;
+      target.classList.remove('flower-hover');
+      hovered = null;
+      container._lockedTo = null;
+      container.style.opacity = '0';
+      stopCycle();
+      stopAnim();
+    }
+
+    document.addEventListener('mouseover', e => {
+      const t = e.target.closest('a, button, [role="button"], .lookbook-item, .side-link, .contact-link, .carousel-item');
+      if(!t) return;
+      onHoverStart(t);
+    });
+    document.addEventListener('mouseout', e => {
+      if (!hovered) return;
+      const to = e.relatedTarget;
+      if (to && hovered.contains(to)) return;
+      onHoverEnd(hovered);
+    });
+  })();
+</script>
 </body>
 </html>
