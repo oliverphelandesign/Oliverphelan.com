@@ -313,22 +313,51 @@
 
   @media (max-width: 720px) {
     .page {
-      padding: 80px 24px 80px;
-      gap: 24px;
+      padding: 60px 20px 80px;
+      gap: 20px;
     }
 
     .hero-flyer {
-      position: absolute;
-      right: 50%;
-      top: 20%;
-      transform: translate(50%, -50%);
-      width: min(440px, 72vw);
-      max-width: 440px;
+      position: relative;
+      right: auto;
+      top: auto;
+      transform: none;
+      width: min(86vw, 360px);
+      max-width: 360px;
+      margin: 0 auto;
+    }
+
+    .hero-gif-section {
+      padding: 0 20px 90px;
+    }
+
+    .hero-gif-inner {
+      width: 100%;
     }
 
     .side-nav {
+      position: relative;
+      top: auto;
+      left: auto;
+      transform: none;
       flex-direction: column;
-      gap: 18px;
+      gap: 20px;
+      align-items: stretch;
+      padding: 0 10px;
+    }
+
+    .side-nav::before {
+      display: none;
+    }
+
+    .lookbook-list {
+      padding-left: 0;
+    }
+
+    .lookbook-item,
+    .side-link,
+    .lookbook-title {
+      font-size: 15px;
     }
   }
   /* Flower hover visual for interactive elements */
@@ -379,8 +408,8 @@
     </nav>
   </div>
 
-  <a class="hero-flyer" href="https://www.instagram.com/1027.004.04204/?hl=en" target="_blank" rel="noreferrer" aria-label="Visit Instagram">
-    <img src="assets/hero-front.png" alt="Front page hero image for Instagram" />
+  <a class="hero-flyer" href="videos.html" aria-label="Open video page">
+    <img src="assets/hero-front.png" alt="Front page hero image for videos" />
   </a>
 
   <div class="hero-gif-section">
