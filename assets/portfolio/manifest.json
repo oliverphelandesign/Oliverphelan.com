@@ -1,40 +1,192 @@
-[[
-  { "title": "Portofloio 1", "file": "assets/portfolio/portofloio_1.pdf" },
-  { "title": "Portofloio 2", "file": "assets/portfolio/portofloio_2.pdf" },
-  { "title": "Portofloio 3", "file": "assets/portfolio/portofloio_3.pdf" },
-  { "title": "Portofloio 4", "file": "assets/portfolio/portofloio_4.pdf" },
-  { "title": "Portofloio 5", "file": "assets/portfolio/portofloio_5.pdf" },
-  { "title": "Portofloio 6", "file": "assets/portfolio/portofloio_6.pdf" },
-  { "title": "Portofloio 7", "file": "assets/portfolio/portofloio_7.pdf" },
-  { "title": "Portofloio 8", "file": "assets/portfolio/portofloio_8.pdf" },
-  { "title": "Portofloio 9", "file": "assets/portfolio/portofloio_9.pdf" },
-  { "title": "Portofloio 10", "file": "assets/portfolio/portofloio_10.pdf" },
-  { "title": "Portofloio 11", "file": "assets/portfolio/portofloio_11.pdf" },
-  { "title": "Portofloio 12", "file": "assets/portfolio/portofloio_12.pdf" },
-  { "title": "Portofloio 13", "file": "assets/portfolio/portofloio_13.pdf" },
-  { "title": "Portofloio 14", "file": "assets/portfolio/portofloio_14.pdf" },
-  { "title": "Portofloio 15", "file": "assets/portfolio/portofloio_15.pdf" },
-  { "title": "Portofloio 16", "file": "assets/portfolio/portofloio_16.pdf" },
-  { "title": "Portofloio 17", "file": "assets/portfolio/portofloio_17.pdf" },
-  { "title": "Portofloio 18", "file": "assets/portfolio/portofloio_18.pdf" },
-  { "title": "Portofloio 19", "file": "assets/portfolio/portofloio_19.pdf" },
-  { "title": "Portofloio 20", "file": "assets/portfolio/portofloio_20.pdf" },
-  { "title": "Portofloio 21", "file": "assets/portfolio/portofloio_21.pdf" },
-  { "title": "Portofloio 22", "file": "assets/portfolio/portofloio_22.pdf" },
-  { "title": "Portofloio 23", "file": "assets/portfolio/portofloio_23.pdf" },
-  { "title": "Portofloio 24", "file": "assets/portfolio/portofloio_24.pdf" },
-  { "title": "Portofloio 25", "file": "assets/portfolio/portofloio_25.pdf" },
-  { "title": "Portofloio 26", "file": "assets/portfolio/portofloio_26.pdf" },
-  { "title": "Portofloio 27", "file": "assets/portfolio/portofloio_27.pdf" },
-  { "title": "Portofloio 28", "file": "assets/portfolio/portofloio_28.pdf" },
-  { "title": "Portofloio 29", "file": "assets/portfolio/portofloio_29.pdf" },
-  { "title": "Portofloio 30", "file": "assets/portfolio/portofloio_30.pdf" },
-  { "title": "Portofloio 31", "file": "assets/portfolio/portofloio_31.pdf" },
-  { "title": "Portofloio 32", "file": "assets/portfolio/portofloio_32.pdf" },
-  { "title": "Portofloio 33", "file": "assets/portfolio/portofloio_33.pdf" },
-  { "title": "Portofloio 34", "file": "assets/portfolio/portofloio_34.pdf" },
-  { "title": "Portofloio 35", "file": "assets/portfolio/portofloio_35.pdf" },
-  { "title": "Portofloio 36", "file": "assets/portfolio/portofloio_36.pdf" },
-  { "title": "Portofloio 37", "file": "assets/portfolio/portofloio_37.pdf" },
-  { "title": "Portofloio 38", "file": "assets/portfolio/portofloio_38.pdf" }
+[
+  {
+    "type": "pdf",
+    "src": "assets/portfolio/portofloio_01.pdf",
+    "caption": "Portofloio 1"
+  },
+  {
+    "type": "pdf",
+    "src": "assets/portfolio/portofloio_02.pdf",
+    "caption": "Portofloio 2"
+  },
+  {
+    "type": "pdf",
+    "src": "assets/portfolio/portofloio_03.pdf",
+    "caption": "Portofloio 3"
+  },
+  {
+    "type": "pdf",
+    "src": "assets/portfolio/portofloio_04.pdf",
+    "caption": "Portofloio 4"
+  },
+  {
+    "type": "pdf",
+    "src": "assets/portfolio/portofloio_05.pdf",
+    "caption": "Portofloio 5"
+  },
+  {
+    "type": "pdf",
+    "src": "assets/portfolio/portofloio_06.pdf",
+    "caption": "Portofloio 6"
+  },
+  {
+    "type": "pdf",
+    "src": "assets/portfolio/portofloio_07.pdf",
+    "caption": "Portofloio 7"
+  },
+  {
+    "type": "pdf",
+    "src": "assets/portfolio/portofloio_08.pdf",
+    "caption": "Portofloio 8"
+  },
+  {
+    "type": "pdf",
+    "src": "assets/portfolio/portofloio_09.pdf",
+    "caption": "Portofloio 9"
+  },
+  {
+    "type": "pdf",
+    "src": "assets/portfolio/portofloio_10.pdf",
+    "caption": "Portofloio 10"
+  },
+  {
+    "type": "pdf",
+    "src": "assets/portfolio/portofloio_11.pdf",
+    "caption": "Portofloio 11"
+  },
+  {
+    "type": "pdf",
+    "src": "assets/portfolio/portofloio_12.pdf",
+    "caption": "Portofloio 12"
+  },
+  {
+    "type": "pdf",
+    "src": "assets/portfolio/portofloio_13.pdf",
+    "caption": "Portofloio 13"
+  },
+  {
+    "type": "pdf",
+    "src": "assets/portfolio/portofloio_14.pdf",
+    "caption": "Portofloio 14"
+  },
+  {
+    "type": "pdf",
+    "src": "assets/portfolio/portofloio_15.pdf",
+    "caption": "Portofloio 15"
+  },
+  {
+    "type": "pdf",
+    "src": "assets/portfolio/portofloio_16.pdf",
+    "caption": "Portofloio 16"
+  },
+  {
+    "type": "pdf",
+    "src": "assets/portfolio/portofloio_17.pdf",
+    "caption": "Portofloio 17"
+  },
+  {
+    "type": "pdf",
+    "src": "assets/portfolio/portofloio_18.pdf",
+    "caption": "Portofloio 18"
+  },
+  {
+    "type": "pdf",
+    "src": "assets/portfolio/portofloio_19.pdf",
+    "caption": "Portofloio 19"
+  },
+  {
+    "type": "pdf",
+    "src": "assets/portfolio/portofloio_20.pdf",
+    "caption": "Portofloio 20"
+  },
+  {
+    "type": "pdf",
+    "src": "assets/portfolio/portofloio_21.pdf",
+    "caption": "Portofloio 21"
+  },
+  {
+    "type": "pdf",
+    "src": "assets/portfolio/portofloio_22.pdf",
+    "caption": "Portofloio 22"
+  },
+  {
+    "type": "pdf",
+    "src": "assets/portfolio/portofloio_23.pdf",
+    "caption": "Portofloio 23"
+  },
+  {
+    "type": "pdf",
+    "src": "assets/portfolio/portofloio_24.pdf",
+    "caption": "Portofloio 24"
+  },
+  {
+    "type": "pdf",
+    "src": "assets/portfolio/portofloio_25.pdf",
+    "caption": "Portofloio 25"
+  },
+  {
+    "type": "pdf",
+    "src": "assets/portfolio/portofloio_26.pdf",
+    "caption": "Portofloio 26"
+  },
+  {
+    "type": "pdf",
+    "src": "assets/portfolio/portofloio_27.pdf",
+    "caption": "Portofloio 27"
+  },
+  {
+    "type": "pdf",
+    "src": "assets/portfolio/portofloio_28.pdf",
+    "caption": "Portofloio 28"
+  },
+  {
+    "type": "pdf",
+    "src": "assets/portfolio/portofloio_29.pdf",
+    "caption": "Portofloio 29"
+  },
+  {
+    "type": "pdf",
+    "src": "assets/portfolio/portofloio_30.pdf",
+    "caption": "Portofloio 30"
+  },
+  {
+    "type": "pdf",
+    "src": "assets/portfolio/portofloio_31.pdf",
+    "caption": "Portofloio 31"
+  },
+  {
+    "type": "pdf",
+    "src": "assets/portfolio/portofloio_32.pdf",
+    "caption": "Portofloio 32"
+  },
+  {
+    "type": "pdf",
+    "src": "assets/portfolio/portofloio_33.pdf",
+    "caption": "Portofloio 33"
+  },
+  {
+    "type": "pdf",
+    "src": "assets/portfolio/portofloio_34.pdf",
+    "caption": "Portofloio 34"
+  },
+  {
+    "type": "pdf",
+    "src": "assets/portfolio/portofloio_35.pdf",
+    "caption": "Portofloio 35"
+  },
+  {
+    "type": "pdf",
+    "src": "assets/portfolio/portofloio_36.pdf",
+    "caption": "Portofloio 36"
+  },
+  {
+    "type": "pdf",
+    "src": "assets/portfolio/portofloio_37.pdf",
+    "caption": "Portofloio 37"
+  },
+  {
+    "type": "pdf",
+    "src": "assets/portfolio/portofloio_38.pdf",
+    "caption": "Portofloio 38"
+  }
 ]
