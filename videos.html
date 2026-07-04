@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visual Archive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: light;
+    font-family: 'Squid Boy Regular', 'Baloo 2', sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    background: #000;
+    color: #fff;
+    overflow-x: hidden;
+  }
+  body {
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+  main {
+    min-height: 100vh;
+  }
+  .section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    scroll-snap-align: start;
+    background: #000;
+  }
+  video {
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    max-height: 100vh;
+    object-fit: contain;
+    display: block;
+    background: #000;
+  }
+  .mute-tip {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 24px;
+    margin: 0 auto;
+    max-width: 320px;
+    color: rgba(255,255,255,0.72);
+    text-align: center;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    pointer-events: none;
+  }
+  @media (max-width: 720px) {
+    .section { min-height: 100vh; }
+    video { width: 100%; height: 100%; }
+    .mute-tip { bottom: 16px; font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+<main aria-label="Visual Archive">
+  <section class="section">
+    <video controls playsinline preload="metadata">
+      <source src="assets/videos/video1.mp4" type="video/mp4">
+      Your browser does not support video playback.
+    </video>
+  </section>
+  <section class="section">
+    <video controls playsinline preload="metadata">
+      <source src="assets/videos/video2.mp4" type="video/mp4">
+      Your browser does not support video playback.
+    </video>
+  </section>
+</main>
+<div class="mute-tip">Scroll to view the next visual</div>
+</body>
+</html>
